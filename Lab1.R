@@ -11,10 +11,10 @@ library(corrplot)
 library(sapply)
 
 #datos de kaggle
-train <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab2/train.csv", header = TRUE, sep = "," , stringsAsFactors = FALSE)
-train2 <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab2/train.csv", header = TRUE, sep = "," , stringsAsFactors = TRUE)
-test <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab2/test.csv", header = TRUE, sep = "," , stringsAsFactors = FALSE)
-price <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab2/sample_submission.csv", header = TRUE, sep = "," , stringsAsFactors = FALSE)
+train <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab1/train.csv", header = TRUE, sep = "," , stringsAsFactors = FALSE)
+train2 <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab1/train.csv", header = TRUE, sep = "," , stringsAsFactors = TRUE)
+test <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab1/test.csv", header = TRUE, sep = "," , stringsAsFactors = FALSE)
+price <- read.csv("C:/Users/Julio/Desktop/Estudios/UVG/2018/Segundo Semestre/Data Science/Lab1/sample_submission.csv", header = TRUE, sep = "," , stringsAsFactors = FALSE)
 
 #se obtienen las columnas numericas
 numericTrain <- train[,(unlist(lapply(train, is.numeric)))]
