@@ -37,12 +37,12 @@ absCor <- abs(corNoNumeric)
 test <- as.data.frame(absCor[,any > 0.5])
 
 #mapa de correlacion
-corrplot(corNoNumeric, method="color")
+corrplot(corNoNumeric, method="number")
 
 #se usaran las columans que presentaron mas correlacion
 principalesNoNumerico <- noNumericConverted[,c("Exterior1st","Exterior2nd","Heating","HeatingQC","Foundation",
                                            "KitchenQual","ExterQual","LandSlope","LandContour","CentralAir")]
-corrplot(cor(principalesNoNumerico), method="color")
+corrplot(cor(principalesNoNumerico), method="number")
 
 
 #se hace el cluster con los principales y k-means para el grupo entero
