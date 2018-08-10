@@ -26,40 +26,33 @@ noNumericTrain <- train2[,!(unlist(lapply(train2, is.numeric)))]
 numericTrain$Id <- NULL
 
 #correlacion no Numerica
-must_convert<-sapply(noNumericTrain,is.factor)
-inter<-sapply(noNumericTrain[,must_convert],unclass)
-out<-cbind(noNumericTrain[,!must_convert],inter)
+must_convert <- sapply(noNumericTrain,is.factor)
+inter <- sapply(noNumericTrain[,must_convert],unclass)
+noNumericConverted <- cbind(noNumericTrain[,!must_convert],inter)
 
 #se cambian los NA por 0
-out[is.na(out)] <- 0
-corNoNumeric<-cor(out)
+noNumericConverted[is.na(noNumericConverted)] <- 0
+corNoNumeric<-cor(noNumericConverted)
 absCor <- abs(corNoNumeric)
 test <- as.data.frame(absCor[,any > 0.5])
-
 
 #mapa de correlacion
 corrplot(corNoNumeric, method="color")
 
 #se usaran las columans que presentaron mas correlacion
-principalesNoNumerico <- out[,c("Exterior1st","Exterior2nd","Heating","HeatingQC","Foundation",
+principalesNoNumerico <- noNumericConverted[,c("Exterior1st","Exterior2nd","Heating","HeatingQC","Foundation",
                                            "KitchenQual","ExterQual","LandSlope","LandContour","CentralAir")]
 corrplot(cor(principalesNoNumerico), method="color")
 
-#se hace el cluster con todos
-irisCompleto<-iris[complete.cases(iris),]
 
-#se hace el cluster con los principales
+#se hace el cluster con los principales y k-means para el grupo entero
+data<-principalesNoNumerico
+km<-kmeans(principalesNoNumerico[,],3)
+data$grupo<-km$cluster
 
+g1<- data[data$grupo==1,]
+prop.table(table(g1$Species))*100
+nrow(g1)
+summary(g1)
 
-
-
-
-
-
-
-
-
-
-
-
-
+plotcluster(principalesNoNumerico[,],km$cluster) #grafica la ubicación de los clusters
